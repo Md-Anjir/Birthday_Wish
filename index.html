@@ -133,14 +133,24 @@
     <canvas id="treeCanvas"></canvas>
 
     <script>
+        // --- 1. DATE LOGIC ---
+        // Get today's date
+        const today = new Date();
+        // Format it nicely (e.g., "Monday, January 1, 2026")
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', dateOptions);
+
         // --- CONFIGURATION ---
         const messages = [
             "Hey you ❤️",
+            "Its "+ formattedDate + " ✨",  // <--- Date inserted here
             "Happy Birthday 🌸",
             "May Allah bless you 🌻",
             "And give u many happiness 🌼",
             "Just saying... you're pretty awesome 🤩",
-            "Hope u have a great day today 💖"
+            "Hope u have a great day today 💖",
+            " ",
+            "-Anjir Hossain"
         ];
         
         const heartColors = ["#FF1493", "#FF69B4", "#FF4500", "#FFD700", "#FFA500", "#DA70D6", "#FFFFFF"];
@@ -171,8 +181,8 @@
 
             // Dynamic Trunk Size:
             // Desktop: 150px, Mobile: Calculated based on height (approx 15% of screen height)
-            const trunkLength = isMobile ? window.innerHeight * 0.15 : 150;
-            const trunkWidth = isMobile ? 15 : 25;
+            const trunkLength = isMobile ? window.innerHeight * 0.12 : 150;
+            const trunkWidth = isMobile ? 12 : 25;
 
             // Start the trunk
             drawBranch(rootX, rootY, trunkLength, 0, trunkWidth, 0, "trunk");
@@ -253,7 +263,7 @@
                     const spread = isMobile ? 15 : 40;
                     const offsetX = (Math.random() - 0.5) * spread;
                     const offsetY = (Math.random() - 0.5) * spread - len;
-                    const size = (isMobile ? 4 : 10) + Math.random() * 15; // Dynamic leaf size
+                    const size = (isMobile ? 6 : 10) + Math.random() * 15; // Dynamic leaf size
                     const rot = (Math.random() - 0.5) * 60;
                     drawHeart(offsetX, offsetY, size, color, rot);
                 }
@@ -300,11 +310,8 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // Note: Resizing resets the canvas, so the tree will disappear. 
-            // Usually fine for a birthday card as people don't resize often while watching.
         });
 
     </script>
 </body>
-
 </html>
